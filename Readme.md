@@ -33,3 +33,8 @@ This is a simple calculator program written in C#. It takes input from text file
 ### Addition
 
 Input file (`input.txt`):
+
+### Reference exercise
+[FileGenerator](https://github.com/rcuello/tecnoDotNet/tree/master)
+of @rcuello
+
