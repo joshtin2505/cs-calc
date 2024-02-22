@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Security;
 class Program
 {
     static void Main(string[] args)
@@ -18,6 +19,7 @@ class Program
             using (StreamWriter writer = new StreamWriter(outputFile))
             {
                 Console.WriteLine("Realizando operaciones...");
+
                 Operations(lines, writer);
             }
             ConsoleLine();
@@ -72,17 +74,16 @@ class Program
     {
         foreach (string line in lines)
         {
-            Console.WriteLine(line);
+            // Console.WriteLine(line);
             //por cada línea, separamos los números y el operador y si era 2+3 quedaria [2,3]
             string[] parts = line.Split(['+', '-', '*', '/']);
-
+            
             if (parts.Length == 2) // Si hay dos partes, es una operación válida
             {
-                if (long.TryParse(parts[0], out long num1) && long.TryParse(parts[1], out long num2)) // Si ambos números son válidos, realizamos la operación
+                if (double.TryParse(parts[0], out double num1) && double.TryParse(parts[1], out double num2)) // Si ambos números son válidos, realizamos la operación
                 {
-                    long result = 0;
+                    double result = 0;
                     char operation = line[parts[0].Length]; // El operador siempre estará en la posición de la longitud del primer número
-
                     switch (operation)
                     {
                         case '+':
@@ -110,7 +111,7 @@ class Program
                             continue;
                     }
 
-                    writer.WriteLine(result);
+                    writer.WriteLine(Math.Round(result,2));
                 }
                 else
                 {
@@ -134,4 +135,5 @@ class Program
     {
         Console.WriteLine("-----------------------------");
     }
+
 }
